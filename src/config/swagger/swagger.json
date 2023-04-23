@@ -1,0 +1,1063 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Chat-Rest-API",
+    "version": "1.0.0",
+    "description": "Rest API for a chat app",
+    "contact": {
+      "email": "nelsoncomer777@gmail.com"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000",
+      "description": "Test API"
+    }
+  ],
+  "basePath": "/",
+  "paths": {
+    "/user/": {
+      "post": {
+        "summary": "Login user",
+        "description": "Route responsible for logging in the user",
+        "tags": ["user"],
+        "requestBody": {
+         "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                },
+                "required": ["email", "password"],
+                "example": {
+                  "email": "email@gmail.com",
+                  "password": "123456"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "Bad Request - invalid email/password or User not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  },
+                  "example": {
+                    "success": false,
+                    "data": {
+                      "message": "Password Or Email Are Incorrect"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK - User logged in",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  },
+                  "example": {
+                    "success": true,
+                    "data": {
+                      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJudW1iZXIiOiIyNjc4NDQ4ODYiLCJ1dWlkIjoiODI5ZjAxYmEtM2NmZS00MzRmLThhZTgtODgzOTNmNDA0YjY1IiwiaWF0IjoxNjgxNjkwODM5fQ.rdJ6IlSIzoirmmyU-n4AgIl512Qc9hB8iVERN-vqg1o",
+                      "friends": [
+                        {
+                          "name": "Tom",
+                          "number": "766897415"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user/register": {
+      "post": {
+        "summary": "User register",
+        "description": "Route responsible for registering user",
+        "tags": ["user"],
+        "requestBody": {
+         "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                },
+                "required": ["name", "email", "password"],
+                "example": {
+                  "name": "Nelson",
+                  "email": "email@gmail.com",
+                  "password": "123456"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "Bad Request - This Email Already Exists",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  },
+                  "example": {
+                    "success": false,
+                    "data": {
+                      "message": "This Email Already Exists"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK - Registered user",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    }
+                  },
+                  "example": {
+                    "success": true
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user/authToken": {
+      "post": {
+        "summary": "User jwt validation",
+        "description": "Route responsible for validating the user's jwt",
+        "tags": ["user"],
+        "requestBody": {
+         "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "token": {
+                    "type": "string"
+                  }
+                },
+                "required": ["token"],
+                "example": {
+                  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJudW1iZXIiOiIyNjc4NDQ4ODYiLCJ1dWlkIjoiODI5ZjAxYmEtM2NmZS00MzRmLThhZTgtODgzOTNmNDA0YjY1IiwiaWF0IjoxNjgxNjkwODM5fQ.rdJ6IlSIzoirmmyU-n4AgIl512Qc9hB8iVERN-vqg1o"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "401": {
+            "description": "Unauthorized - Invalid token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  },
+                  "example": {
+                    "success": false,
+                    "data": {
+                      "message": "Invalid JWT Token"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK - Token Validated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    }
+                  },
+                  "example": {
+                    "success": true
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user/rename": {
+      "patch": {
+        "summary": "User Rename",
+        "description": "Route responsible for renaming username",
+        "tags": ["user"],
+        "security": [{ "bearerAuth": [] }],
+        "requestBody": {
+         "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "newName": {
+                    "type": "string"
+                  }
+                },
+                "required": ["newName"],
+                "example": {
+                  "newName": "Nelson-Dominici"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "401": {
+            "description": "Unauthorized - JWT token error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  },
+                  "example": {
+                    "success": false,
+                    "data": {
+                      "message": "JWT Token Error"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK - Renamed User",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    }
+                  },
+                  "example": {
+                    "success": true
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+
+
+
+
+
+    "/user/deleteAccount": {
+      "delete": {
+        "summary": "Delete Account",
+        "description": "Route responsible for deleting the user account",
+        "tags": ["user"],
+        "security": [{ "bearerAuth": [] }],
+        "responses": {
+          "401": {
+            "description": "Unauthorized - JWT token error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  },
+                  "example": {
+                    "success": false,
+                    "data": {
+                      "message": "JWT Token Error"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK - Edited Name",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    }
+                  },
+                  "example": {
+                    "success": true
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    "/friend/sendFriendRequest": {
+      "post": {
+        "summary": "Send Friend Request",
+        "description": "Route responsible for sending a friend request",
+        "tags": ["friend"],
+        "security": [{ "bearerAuth": [] }],
+        "requestBody": {
+         "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "receiverNumber": {
+                    "type": "string"
+                  }
+                },
+                "required": ["receiverNumber"],
+                "example": {
+                  "receiverNumber": "766897415"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "Bad Request - Users are Already Friends",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  },
+                  "example": {
+                    "success": false,
+                    "data": {
+                      "message": "You And This User Are Already Friends"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - JWT token error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  },
+                  "example": {
+                    "success": false,
+                    "data": {
+                      "message": "JWT Token Error"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK - Friend Request Sent",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    }
+                  },
+                  "example": {
+                    "success": true
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/friend/rejectFriendRequest/{requesterNumber}": {
+      "delete": {
+        "summary": "Reject Friend Request",
+        "description": "Route responsible for rejecting a friend request",
+        "tags": ["friend"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "requesterNumber",
+            "in": "path",
+            "description": "requester number",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "404": {
+            "description": "Not Found - Friend Request Does Not Exist",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  },
+                  "example": {
+                    "success": false,
+                    "data": {
+                      "message": "Friend Request Does Not Exist"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - JWT token error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  },
+                  "example": {
+                    "success": false,
+                    "data": {
+                      "message": "JWT Token Error"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK - Rejected Friend Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    }
+                  },
+                  "example": {
+                    "success": true
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/friend/acceptFriendRequest": {
+      "post": {
+        "summary": "Accept Friend Request",
+        "description": "Route responsible for accepting a friend request",
+        "tags": ["friend"],
+        "security": [{ "bearerAuth": [] }],
+        "requestBody": {
+         "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "requesterNumber": {
+                    "type": "string"
+                  }
+                },
+                "required": ["requesterNumber"],
+                "example": {
+                  "requesterNumber": "673162878"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  },
+                  "example": {
+                    "success": false,
+                    "data": {
+                      "message": "Something Went Wrong"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - JWT token error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  },
+                  "example": {
+                    "success": false,
+                    "data": {
+                      "message": "JWT Token Error"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK - Friend Request Accepted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    }
+                  },
+                  "example": {
+                    "success": true,
+                    "data": {
+                      "name": "Nelson-Dominici",
+                      "number": "673162878"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/friend/sendMessage": {
+      "post": {
+        "summary": "Send A Message To A Friend",
+        "description": "Route responsible for sending a message to a friend",
+        "tags": ["friend"],
+        "security": [{ "bearerAuth": [] }],
+        "requestBody": {
+         "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "friendNumber": {
+                    "type": "string"
+                  },
+                  "message": {
+                    "type": "string"
+                  }
+                },
+                "required": ["friendNumber","message"],
+                "example": {
+                  "friendNumber": "673162878",
+                  "message": "Hi :)"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  },
+                  "example": {
+                    "success": false,
+                    "data": {
+                      "message": "Something Went Wrong"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - JWT token error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  },
+                  "example": {
+                    "success": false,
+                    "data": {
+                      "message": "JWT Token Error"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK - Message sent",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    }
+                  },
+                  "example": {
+                    "success": true
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/friend/{friendNumber}/deleteMessage/{msgUuid}": {
+      "delete": {
+        "summary": "Delete Message",
+        "description": "Route responsible for deleting message from a conversation with a friend",
+        "tags": ["friend"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "friendNumber",
+            "in": "path",
+            "description": "Friend number",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "msgUuid",
+            "in": "path",
+            "description": "message uuid",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  },
+                  "example": {
+                    "success": false,
+                    "data": {
+                      "message": "Something Went Wrong"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - JWT token error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  },
+                  "example": {
+                    "success": false,
+                    "data": {
+                      "message": "JWT Token Error"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK - Message sent",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    }
+                  },
+                  "example": {
+                    "success": true
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/friend/unfriendUser/{friendNumber}": {
+      "delete": {
+        "summary": "Unfriend Route",
+        "description": "Route responsible for unfriending",
+        "tags": ["friend"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "friendNumber",
+            "in": "path",
+            "description": "Friend number",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  },
+                  "example": {
+                    "success": false,
+                    "data": {
+                      "message": "Something Went Wrong"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - JWT token error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  },
+                  "example": {
+                    "success": false,
+                    "data": {
+                      "message": "JWT Token Error"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "success": {
+                      "type": "array"
+                    }
+                  },
+                  "example": {
+                    "success": true,
+                    "data": []
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/friend/getMessages/{friendNumber}": {
+      "get": {
+        "summary": "Get Messages",
+        "description": "Route responsible for getting messages from the user and his friend",
+        "tags": ["friend"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "friendNumber",
+            "in": "path",
+            "description": "Friend number",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  },
+                  "example": {
+                    "success": false,
+                    "data": {
+                      "message": "Something Went Wrong"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - JWT token error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  },
+                  "example": {
+                    "success": false,
+                    "data": {
+                      "message": "JWT Token Error"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "success": {
+                      "type": "array"
+                    }
+                  },
+                  "example": {
+                    "success": true,
+                    "data": []
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  }
+}
