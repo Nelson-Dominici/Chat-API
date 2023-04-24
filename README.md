@@ -39,15 +39,16 @@ npm i socket.io-client
 Then you will have to import and call the function that is responsible for connecting the client to the server, passing the server's url as a parameter of this function, if the server is in the same url as the client, the url is not necessary in the parameters.
 </p>
 
-<h4>Depending on what you are using in the front-end the import may be different:</h4>
+<h4>Depending on what you're using in the front-end maybe the syntax could be different:</h4>
 
 ```javascript
 import io from 'socket.io-client';
+const socket = io('http://localhost:3000');
 ```
-
-<h2>🎲 Send and receive events from the Socket.io server</h2>
+<br>
+<h3>🌱 Send and Receive events from Socket.io server</h3>
 <p>
-Then you will have to import and call the function that is responsible for connecting the client to the server, passing the server's url as a parameter of this function, if the server is in the same url as the client, the url is not necessary in the parameters.
+To send and receive events from the Socket.io server, the object returned after the client connects to the server will be used. Next, all the ways to send and receive events from the server will be listed.
 </p>
 
 
