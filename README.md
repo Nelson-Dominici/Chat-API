@@ -48,11 +48,14 @@ const socket = io('http://localhost:3000');
 
 <h3>🌱 Send and Receive events from Socket.io server</h3>
 <p>
-The register event is responsible for registering the client, so that he receives messages from his friends, in addition to the name of the event, there are two other parameters, the JWT Token, and a callback that will receive true or false if the client was successfully registered.
+To send and receive events from the server, the object that was returned from the connection between the client and the server will be used.<br>
+The following will list all events available in this API:
 </p>
 
-<h4>- register -</h4>
-<p></p>
+<h4> register </h4>
+<p>
+The register event is responsible for registering the client, so that he receives messages from his friends, in addition to the name of the event, there are two other parameters, the JWT Token, and a callback that will receive true or false if the client was successfully registered.
+</p>
 
 
 ```javascript
