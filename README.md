@@ -57,7 +57,6 @@ The following will list all events available in this API:
 The register event is responsible for registering the client, so that he receives messages from his friends, in addition to the name of the event, there are two other parameters, the JWT Token, and a callback that will receive true or false if the client was successfully registered.
 </p>
 
-
 ```javascript
 socket.emit("register", "Bearer JWT", (response) => {
   
@@ -69,5 +68,71 @@ socket.emit("register", "Bearer JWT", (response) => {
 });
 ```
 
+<h4> friendMessage </h4>
+<p>
+The friendMessage event will be emitted from the server when the client receives a message from his friend, in the event an object will come with the friend's number, name, and message.
+</p>
+
+```javascript
+socket.on("friendMessage", (data) => {
+  console.log(data);
+});
+```
+
+<h4> deleteMessage </h4>
+<p>
+The deleteMessage event will be emitted from the server when the client's friend deletes his own message, it will contain the friend's number and name.
+</p>
+
+```javascript
+socket.on("deleteMessage", (data) => {
+  console.log(data);
+});
+```
+
+<h4> requestFriend </h4>
+<p>
+The requestFriend event will be emitted from the server when the client's friend request is accepted, it will contain the new friend's number and name.
+</p>
+
+```javascript
+socket.on("requestFriend", (data) => {
+  console.log(data);
+});
+```
+
+<h4> brokenFriendship </h4>
+<p>
+The brokenFriendship event will be emitted from the server when a friend unfriends the customer, it will contain the number and name of the former friend.</p>
+
+```javascript
+socket.on("brokenFriendship", (data) => {
+  console.log(data);
+});
+```
+
+<h4> friendAccountDeleted </h4>
+<p>
+The friend Account Deleted event will be emitted from the server when a friend of the client deletes his own account, it will contain the number and name of the old friend.
+</p>
+
+```javascript
+socket.on("friendAccountDeleted", (data) => {
+  console.log(data);
+});
+```
+
+
+
+<h4> friendNewName </h4>
+<p>
+The friendNewName event will be emitted from the server when a friend of the client changes his name, it will contain the friend's number and name.
+</p>
+
+```javascript
+socket.on("friendNewName", (data) => {
+  console.log(data);
+});
+```
 
 
