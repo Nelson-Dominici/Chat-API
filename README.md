@@ -45,13 +45,26 @@ Then you will have to import and call the function that is responsible for conne
 import io from 'socket.io-client';
 const socket = io('http://localhost:3000');
 ```
-<br>
+
 <h3>🌱 Send and Receive events from Socket.io server</h3>
 <p>
-To send and receive events from the Socket.io server, the object returned after the client connects to the server will be used. Next, all the ways to send and receive events from the server will be listed.
+The register event is responsible for registering the client, so that he receives messages from his friends, in addition to the name of the event, there are two other parameters, the JWT Token, and a callback that will receive true or false if the client was successfully registered.
 </p>
 
+<h4>- register -</h4>
+<p></p>
 
+
+```javascript
+socket.emit("register", "Bearer JWT", (response) => {
+  
+  if(response === true){
+    console.log("successfully registered user");
+  }else{
+    console.log("Something Went Wrong");
+  }
+});
+```
 
 
 
