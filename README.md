@@ -70,7 +70,7 @@ socket.emit("register", "Bearer JWT", (response) => {
 
 <h4> friendMessage </h4>
 <p>
-The friendMessage event will be emitted from the server when the client receives a message from his friend, in the event an object will come with the friend's number, name, and message.
+The friendMessage event will be emitted from the server when the client receives a message from his friend, it will contain the friend's number, name and message.
 </p>
 
 ```javascript
@@ -113,7 +113,7 @@ socket.on("brokenFriendship", (data) => {
 
 <h4> friendAccountDeleted </h4>
 <p>
-The friend Account Deleted event will be emitted from the server when a friend of the client deletes his own account, it will contain the number and name of the old friend.
+The friendAccountDeleted event will be emitted from the server when a friend of the client deletes his own account, it will contain the number and name of the old friend.
 </p>
 
 ```javascript
