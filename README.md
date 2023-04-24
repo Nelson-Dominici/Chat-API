@@ -136,3 +136,7 @@ socket.on("friendNewName", (data) => {
 ```
 
 
+<h2>🔥 Author</h2>
+
+| [<img src="https://avatars.githubusercontent.com/Nelson-Dominici" width=115><br><sub>Nelson Dominici</sub>](https://github.com/Nelson-Dominici) |
+| :---: |
