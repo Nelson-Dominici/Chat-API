@@ -25,7 +25,7 @@ const io = new Server(httpServer);
 
 app.use(cors());
 
-config(".env");
+config();
 
 mongoose.connect(process.env.DATABASE_URL);
 
