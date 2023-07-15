@@ -7,7 +7,7 @@ CHAT-API
 
 <h2>🚀 About</h2>
 <p>
-Chat-Rest-API - It is a web-based real-time communication platform that allows users to connect and chat with each other in chat rooms. It was built using the Express.js framework and the MongoDB database to store user information and message history. Additionally, the Socket.io library was used to enable two-way communication between the server and the client, ensuring a smoother and more responsive real-time chat experience.
+Chat-API - It is a web-based real-time communication platform that allows users to connect and chat with each other in chat rooms. It was built using the Express.js framework and the MongoDB database to store user information and message history. Additionally, the Socket.io library was used to enable two-way communication between the server and the client, ensuring a smoother and more responsive real-time chat experience.
 </p>
 
 <h2>🛠 Technologies</h2>
