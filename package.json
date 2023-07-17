@@ -1,7 +1,7 @@
 {
-  "name": "Chat-Rest-API",
+  "name": "Chat-RESTful-API",
   "version": "1.0.0",
-  "description": "Chat-Rest-API is an API that helps programmers with questions.",
+  "description": "A RESTful API of a chat",
   "main": "servers/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
