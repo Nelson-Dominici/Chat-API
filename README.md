@@ -4,6 +4,7 @@
 CHAT-API
 </h1>
 
+<img style="object-fit: cover;" src="https://github.com/Nelson-Dominici/Chat-API/assets/89428967/1cced367-8758-42e8-a28e-fe5a0f516617"><br>
 
 <h2>🚀 About</h2>
 <p>
@@ -42,8 +43,8 @@ Then you will have to import and call the function that is responsible for conne
 <h4>Depending on what you're using in the front-end maybe the syntax could be different:</h4>
 
 ```javascript
-import io from 'socket.io-client';
-const socket = io('http://localhost:3000');
+import io from "socket.io-client";
+const socket = io("http://localhost:3000");
 ```
 
 <h3>🌱 Send and Receive events from Socket.io server</h3>
